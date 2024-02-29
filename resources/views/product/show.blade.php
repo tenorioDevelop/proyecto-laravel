@@ -29,6 +29,14 @@
                             {{ $product->descripcion }}
                         </div>
                         <div class="form-group">
+                            <strong>Categoria:</strong>
+                            {{ $product->categoria }}
+                        </div>
+                        <div class="form-group">
+                            <strong>Marca:</strong>
+                            {{ $product->marca }}
+                        </div>
+                        <div class="form-group">
                             <strong>Imagen:</strong>
                             {{ $product->imagen }}
                         </div>

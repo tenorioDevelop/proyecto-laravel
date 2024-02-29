@@ -38,6 +38,8 @@
                                         
 										<th>Nombre</th>
 										<th>Descripcion</th>
+										<th>Categoria</th>
+										<th>Marca</th>
 										<th>Imagen</th>
 										<th>Precio</th>
 										<th>Stock</th>
@@ -52,6 +54,8 @@
                                             
 											<td>{{ $product->nombre }}</td>
 											<td>{{ $product->descripcion }}</td>
+											<td>{{ $product->categoria }}</td>
+											<td>{{ $product->marca }}</td>
 											<td>{{ $product->imagen }}</td>
 											<td>{{ $product->precio }}</td>
 											<td>{{ $product->stock }}</td>

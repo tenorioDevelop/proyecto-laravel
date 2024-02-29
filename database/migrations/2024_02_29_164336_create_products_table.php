@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string("nombre");
             $table->string("descripcion");
+            $table->string("categoria");
+            $table->string("marca");
             $table->string("imagen");
             $table->double("precio", 8, 2);
             $table->integer("stock");
