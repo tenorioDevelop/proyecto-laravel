@@ -7,8 +7,18 @@
 <title>Rubik's palace - tienda</title>
 </head>
 <body>
-    {{-- FIXME --}}
     @extends('layouts.app')
-    {{$productos}}
+    {{-- @section('content')
+    <div class="container-md">
+        <div class="d-flex flex-wrap ">
+            @foreach ($productos as $producto)
+            <div class="producto">
+                
+            </div>
+            @endforeach
+        </div>
+    </div>
+    @endsection --}}
+    <span class="nombre">{{$productos}}</span>
 </body>
 </html>
