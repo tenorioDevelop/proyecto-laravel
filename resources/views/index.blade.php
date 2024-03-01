@@ -8,17 +8,32 @@
 </head>
 <body>
     @extends('layouts.app')
-    {{-- @section('content')
+    @section('content')
     <div class="container-md">
-        <div class="d-flex flex-wrap ">
-            @foreach ($productos as $producto)
-            <div class="producto">
-                
-            </div>
-            @endforeach
-        </div>
+        <table class="table">
+            <thead>
+                <td>Imagen</td>
+                <td>Nombre</td>
+                <td>Descripcion</td>
+                <td>Categoria</td>
+                <td>Marca</td>
+                <td>Precio</td>
+            </thead>
+                <tbody>
+                    @foreach ($productos as $producto)
+                    <tr class="tr">
+                        <td><img src="{{asset('storage/'.$producto->imagen)}}" /></td>
+                        <td>{{$producto->nombre}}</td>
+                        <td>{{$producto->descripcion}}</td>
+                        <td>{{$producto->categoria}}</td>
+                        <td>{{$producto->marca}}</td>
+                        <td>{{$producto->precio}}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+        </table>
     </div>
-    @endsection --}}
-    <span class="nombre">{{$productos}}</span>
+    @endsection
+    <!-- <span class="nombre">{{$productos}}</span> -->
 </body>
 </html>
