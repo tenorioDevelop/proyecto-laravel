@@ -18,16 +18,18 @@
                 <td>Categoria</td>
                 <td>Marca</td>
                 <td>Precio</td>
+                <td>Acciones</td>
             </thead>
                 <tbody>
                     @foreach ($productos as $producto)
                     <tr class="tr">
-                        <td><img src="{{asset('storage/'.$producto->imagen)}}" /></td>
+                        <td><a target="_blank" href="/storage/{{$producto->imagen}}"><img src="{{asset('storage/' . $producto->imagen)}}" /></a></td>
                         <td>{{$producto->nombre}}</td>
                         <td>{{$producto->descripcion}}</td>
                         <td>{{$producto->categoria}}</td>
                         <td>{{$producto->marca}}</td>
-                        <td>{{$producto->precio}}</td>
+                        <td>{{$producto->precio}}€</td>
+                        <td><a href="/comprar/{{$producto->id}}" class="btn btn-success">Aniadir</a></td>
                     </tr>
                     @endforeach
                 </tbody>
