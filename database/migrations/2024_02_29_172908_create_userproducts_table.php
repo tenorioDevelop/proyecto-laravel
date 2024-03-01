@@ -12,9 +12,17 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('userproducts', function (Blueprint $table) {
-            $table->id();
-            $table->integer('id_product');
+            // Establecer las dos columnas como claves primarias
+            $table->primary(['id_user', 'id_product']);
+            
+            // Definir las columnas de id_user, id_product y cantidad
             $table->integer('id_user');
+            $table->integer('id_product');
+            $table->integer('cantidad'); // Añadir el atributo cantidad
+            
+            // Opcional: agregar restricciones de clave foránea si es necesario
+            // $table->foreign('id_user')->references('id')->on('users');
+            // $table->foreign('id_product')->references('id')->on('products');
         });
     }
 

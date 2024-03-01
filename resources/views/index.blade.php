@@ -36,6 +36,5 @@
         </table>
     </div>
     @endsection
-    <!-- <span class="nombre">{{$productos}}</span> -->
 </body>
 </html>

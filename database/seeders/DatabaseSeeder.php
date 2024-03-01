@@ -5,7 +5,10 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -122,6 +125,17 @@ class DatabaseSeeder extends Seeder
             'imagen' => 'cubo-4x4-weishi-gts.jpg',
             'precio' => 21.99,
             'stock' => 35,
+        ]);
+
+        User::create([
+            'name' => 'admin',
+            'email' => 'admin@admin.com',
+            'password' => Hash::make('adminadmin'),
+        ]);
+        User::create([
+            'name' => 'tenorio',
+            'email' => 'tenorio@gmail.com',
+            'password' => Hash::make('tenoriotenorio'),
         ]);
 
     }
