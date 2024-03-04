@@ -18,6 +18,9 @@
                 <td>Categoria</td>
                 <td>Marca</td>
                 <td>Precio</td>
+                @if(true)
+                <td>stock</td>
+                @endif
                 <td>Acciones</td>
             </thead>
                 <tbody>

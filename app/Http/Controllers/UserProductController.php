@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\UserProduct;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 use Illuminate\Support\Facades\Auth;
 
 class UserProductController extends Controller
@@ -25,11 +27,11 @@ class UserProductController extends Controller
 
     public function aniadirCantidadCarrito($idProducto)
     {
-        $elemento = UserProduct::where(['id_user' => Auth::user()->id, 'id_product' => $idProducto])->first();
-        if ($elemento) {
-            $elemento->cantidad++;
-            $elemento->save();
-        }
+        UserProduct::where([
+            'id_user' => Auth::user()->id,
+            'id_product' => $idProducto
+        ])->update(['cantidad' => DB::raw('cantidad + 1')]);
+
     }
 
 
