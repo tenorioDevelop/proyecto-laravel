@@ -42,7 +42,11 @@
                                     <td>{{ $producto->stock }}</td>
                                 @endif
                             @endif
+                            @if ($producto->stock == 0)
+                            <td>SIN STOCK</td>
+                            @else
                             <td><a href="/comprar/{{ $producto->id }}" class="btn btn-success">Aniadir</a></td>
+                            @endif
                         </tr>
                     @endforeach
                 </tbody>
