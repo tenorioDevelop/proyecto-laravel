@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserProductController;
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,4 +38,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/comprar/{id}', [UserProductController::class, 'aniadirCarrito'])->middleware(['auth', 'verified'])->name("aniadirCarrito");
 
-Route::get('/carrito', [UserProductController::class, 'index'])->name('carrito');
+Route::get('/aumentarCantidad/{id}', [UserProductController::class, 'aniadirCantidadCarrito'])->middleware(['auth', 'verified'])->name("aniadirCantidadCarrito");
+
+Route::get('/reducirCantidad/{id}', [UserProductController::class, 'reducirCantidadCarrito'])->middleware(['auth', 'verified'])->name("reducirCantidadCarrito");
+
+Route::get('/carrito', [UserProductController::class, "mostrarCarrito"])->middleware(['auth', 'verified'])->name('carrito');
+
+Route::get('/vaciar-cesta', [UserProductController::class, "vaciarCesta"])->middleware(['auth', 'verified'])->name('vaciarCesta');

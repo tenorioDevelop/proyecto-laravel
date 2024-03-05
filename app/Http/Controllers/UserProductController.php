@@ -13,8 +13,21 @@ use Illuminate\Support\Facades\Auth;
 class UserProductController extends Controller
 {
 
-    public function __invoke(){
-        return view("carrito");
+    public function mostrarCarrito()
+    {
+        $registrosUserProduct = UserProduct::all();
+        $registroProduct = Product::all();
+        $elementosCarrito = [];
+        for ($i = 0; $i < count($registrosUserProduct); $i++) {
+            $elementosCarrito[] = [
+                "id" => $registroProduct[$i]->id,
+                "nombre" => $registroProduct[$i]->nombre,
+                "imagen" => $registroProduct[$i]->imagen,
+                "precio" => $registroProduct[$i]->precio,
+                "cantidad" => $registrosUserProduct[$i]->cantidad
+            ];
+        }
+        return view("carrito", compact("elementosCarrito"));
     }
 
     public function aniadirCarrito($idProducto)
@@ -27,6 +40,9 @@ class UserProductController extends Controller
             $elementoCarrito->id_product = $idProducto;
             $elementoCarrito->cantidad = 1;
             $elementoCarrito->save();
+            Product::where([
+                'id' => $idProducto
+            ])->update(['stock' => DB::raw('stock - 1')]);
         }
         return redirect("/");
     }
@@ -45,15 +61,37 @@ class UserProductController extends Controller
 
     public function reducirCantidadCarrito($idProducto)
     {
+
+        /* Comprobar que el elemento del carrito no tenga valor negativo */
+        if (UserProduct::where(['id_product' => $idProducto])->first()->cantidad == 1) {
+            UserProduct::where(['id_product' => $idProducto])->delete();
+            Product::where([
+                'id' => $idProducto
+            ])->update(['stock' => DB::raw('stock + 1')]);
+        } else {
+            UserProduct::where([
+                'id_user' => Auth::user()->id,
+                'id_product' => $idProducto
+            ])->update(['cantidad' => DB::raw('cantidad - 1')]);
+
+            Product::where([
+                'id' => $idProducto
+            ])->update(['stock' => DB::raw('stock + 1')]);
+        }
+        return redirect("/carrito");
+    }
+
+    public function vaciarCesta()
+    {
+        $id = Auth::user()->id;
+        $cantidad = UserProduct::where(['id_user' => $id])->first()->cantidad;
+        $idProducto = UserProduct::where(['id_user' => $id])->first()->idProducto;
+        UserProduct::where(['id_user' => $id])->delete();
         UserProduct::where([
             'id_user' => Auth::user()->id,
             'id_product' => $idProducto
-        ])->update(['cantidad' => DB::raw('cantidad - 1')]);
-
-        Product::where([
-            'id' => $idProducto
-        ])->update(['stock' => DB::raw('stock + 1')]);
-        }
-
+        ])->update(['cantidad' => DB::raw('cantidad - ' . $cantidad)]);
+        return redirect("/");
+    }
 
 }
