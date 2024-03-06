@@ -38,6 +38,9 @@
                         <li class="nav-item">
                             <a class="nav-link bg-primary rounded text-white" href="{{ route("carrito") }}">Carrito</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link rounded" href="/products">Administrar productos</a>
+                        </li>
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
