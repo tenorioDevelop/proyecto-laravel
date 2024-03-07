@@ -48,7 +48,7 @@ class ProductController extends Controller
         $product = Product::create($request->all());
 
         return redirect()->route('products.index')
-            ->with('success', 'Product created successfully.');
+            ->with('success', 'Producto creado correctamente.');
     }
 
     /**
@@ -91,7 +91,7 @@ class ProductController extends Controller
         $product->update($request->all());
 
         return redirect()->route('products.index')
-            ->with('success', 'Product updated successfully');
+            ->with('success', 'Producto actualizado correctamente');
     }
 
     /**
@@ -104,7 +104,7 @@ class ProductController extends Controller
         $product = Product::find($id)->delete();
 
         return redirect()->route('products.index')
-            ->with('success', 'Product deleted successfully');
+            ->with('success', 'Producto borrado correctamente');
     }
 
 }

@@ -38,9 +38,13 @@
                         <li class="nav-item">
                             <a class="nav-link bg-primary rounded text-white" href="{{ route("carrito") }}">Carrito</a>
                         </li>
+                        @if (isset(Auth::user()->name))
+                        @if (Auth::user()->name == 'admin')
                         <li class="nav-item">
                             <a class="nav-link rounded" href="/products">Administrar productos</a>
                         </li>
+                        @endif
+                        @endif
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
